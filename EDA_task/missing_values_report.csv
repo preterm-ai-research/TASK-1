@@ -1,0 +1,11 @@
+Feature,Missing_Count,Missing_Percentage
+maternal_age_group,0,0.0
+maternal_education,141,1.41
+prior_live_births_now_living,77,0.77
+prior_live_births_now_dead,384,3.84
+prepregnancy_bmi,340,3.4
+prepregnancy_diabetes,70,0.7
+prepregnancy_hypertension,70,0.7
+previous_preterm_birth,70,0.7
+plurality,0,0.0
+preterm_birth,0,0.0

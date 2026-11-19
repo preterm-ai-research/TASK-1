@@ -1,0 +1,12 @@
+Item,Treatment,Reason
+Train/test split,"80/20, stratified on preterm_birth, random_state=42, done before any fitting",Keeps the ~10.6% preterm share in both sets and prevents data leakage.
+maternal_age_group,"Ordinal encoding (13 ordered levels, 0 to 12), then standardized","Natural order. Levels are not equally spaced (single years, then 5-year bands)."
+maternal_education,"Ordinal encoding (8 ordered levels), unknown flagged in maternal_education_unknown, median imputed, standardized",Natural order. Keeps the information that the value was missing (1.41%).
+prior_live_births_now_living,"Median imputation (training set), standardized",Right-skewed count; the median is robust to extreme values.
+prior_live_births_now_dead,"Value 9 treated as missing (configurable), median imputation, standardized",Value 9 is unverified against the CDC codebook. 3.84% missing.
+prepregnancy_bmi,"Median imputation, standardized, outliers kept (IQR limits computed on train)",High-end outliers are statistically unusual but not confirmed errors.
+"Yes/no columns (diabetes, hypertension, previous preterm birth)","Missing becomes an 'unknown' category, then one-hot encoded",Missing is not treated as 'no'. Trade-off: three columns per feature instead of one.
+plurality,"One-hot encoding (singleton, twins, triplets)",Avoids implying equal spacing. Triplets are very rare (6 records).
+Duplicate rows,Kept,Identical features can belong to different mothers (EDA: 224 feature combinations have both outcomes). Overlap between train and test is measured in Section 3.
+Class imbalance,Not corrected here,Handled in the modeling stage and only on the training set.
+Data leakage,"All imputers, encoders and the scaler fitted on training data only",The test set only goes through transform.
